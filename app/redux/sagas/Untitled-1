@@ -1,0 +1,106 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom'
+import { Field, reduxForm } from 'redux-form'
+import { Layout, Button,Card,Input,Icon } from 'antd';
+
+import { required, email } from '../../utils/validate';
+import { loginRequest, logoutRequest } from '../../redux/actions/Login';
+import './style.scss'
+
+const renderField = (field) => {
+    return (
+    <div className="inputContainers">
+        <Input
+                {...field.input} type={field.type}
+                prefix={<Icon type={field.label} style={{ color: 'rgba(0,0,0,.25)' }} />}
+                placeholder={field.placeholder}
+              />
+              <br/>
+        {field.meta.touched && field.meta.error &&
+        <p className="errorText">{field.meta.error}</p>}
+    </div>)
+}
+
+class LoginPage extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    handleLogin = (user) => {
+        this.props.login(user);
+    }
+
+    render() {
+        return (
+            <>
+                <div className="container">
+                    <div className="row">
+                        <div className="col-md-6">
+                            <h2>Login</h2>
+                            <Field
+                                name="email"
+                                label='mail'
+                                placeholder="Your Username"
+                                validate={[required, email]}
+                                component="input"
+                                type="text"
+                                props={{ errortext: 'Please enter a valid email address' }}
+                            />
+                            <Field
+                                label='lock'
+                                name="password"
+                                component="input"
+                                type="password"
+                                placeholder="Your Password"
+                                validate={[required]}
+                                props={{
+                                    type: 'password',
+                                    errortext: 'Please enter your password'
+                                }}
+                            />
+                           
+                            <div className="buttonContainerLogin">
+                                <Button
+                                    className="loginButtonLoginPage"
+                                    size="large"
+                                    type="primary"
+                                    onClick={this.props.handleSubmit(this.handleLogin)}
+                                >
+                                    <div className="loginPageLoginText">Login</div>
+                                </Button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </>
+        );
+    }
+}
+
+const reduxForms = reduxForm({
+    form: 'login'
+})(LoginPage);
+
+const mapStateToProps = (state) => {
+    return {
+        user: state.login.user,
+        loading: state.login.loading,
+        message: state.login.message
+    }
+}
+
+const bindActions = (dispatch) => {
+    return {
+        login: (user) => dispatch(loginRequest(user)),
+        logout: () => dispatch(logoutRequest())
+    }
+}
+
+const withConnect = connect(
+    mapStateToProps,
+    bindActions
+)
+
+export default withRouter(withConnect(reduxForms));

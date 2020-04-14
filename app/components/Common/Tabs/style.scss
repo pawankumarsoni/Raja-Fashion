@@ -1,0 +1,8 @@
+.common-tab{
+    width: 60% !important;
+}
+@media (max-width: 767px) {
+    .common-tab{
+        width: 100% !important;
+    }
+}

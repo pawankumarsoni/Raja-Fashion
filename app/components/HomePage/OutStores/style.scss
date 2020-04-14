@@ -1,0 +1,13 @@
+.margin_b_35{
+    margin-bottom: 35px;
+}
+.shop_over:hover{
+   box-shadow: 0 1px 7px 0 #e2d0b2;
+   background-color: #ffffff;
+}
+.shop_over img {
+    width: 100%;
+}
+.shop_over.selected{
+    background-color: rgba(225, 204, 169, 0.84);
+}

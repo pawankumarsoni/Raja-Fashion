@@ -13,47 +13,37 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
-import FontFaceObserver from 'fontfaceobserver';
-import history from 'utils/history';
-import 'sanitize.css/sanitize.css';
+import Loader from 'react-loader-spinner';
+import { IntlProvider } from 'react-intl';
 
+import { configureFakeBackend } from './helpers';
 // Import root app
 import App from 'containers/App';
-
-// Import Language Provider
-import LanguageProvider from 'containers/LanguageProvider';
-
 // Load the favicon and the .htaccess file
 import '!file-loader?name=[name].[ext]!./images/favicon.ico';
 import 'file-loader?name=.htaccess!./.htaccess'; // eslint-disable-line import/extensions
-
-import configureStore from './configureStore';
-
+import { storeInst, history } from './store/ConfigureStore';
+import { PersistGate } from 'redux-persist/integration/react';
 // Import i18n messages
 import { translationMessages } from './i18n';
+import locale_en from "./translations/en.json";
+import locale_de from "./translations/de.json";
 
-// Observe loading of Open Sans (to remove open sans, remove the <link> tag in
-// the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add a font-family using Open Sans to the body
-openSansObserver.load().then(() => {
-  document.body.classList.add('fontLoaded');
-});
+configureFakeBackend();
 
 // Create redux store with history
-const initialState = {};
-const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
 
 const render = messages => {
   ReactDOM.render(
-    <Provider store={store}>
-      <LanguageProvider messages={messages}>
-        <ConnectedRouter history={history}>
-          <App />
-        </ConnectedRouter>
-      </LanguageProvider>
+    <Provider store={storeInst.store}>
+        <PersistGate loading={<Loader />} persistor={storeInst.persistor}>
+            <IntlProvider locale="en" messages={locale_en}>
+                <ConnectedRouter history={history}>
+                    <App />
+                </ConnectedRouter>
+            </IntlProvider>
+        </PersistGate>  
     </Provider>,
     MOUNT_NODE,
   );

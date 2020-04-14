@@ -1,0 +1,97 @@
+.testimonials{
+    .bg_circle_gold{
+        width: 80px;
+        height: 80px;
+        background-color: #f2e8d8;
+        border-radius: 50%;
+    }
+    .text_testimonial{
+        font-size: 20px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+        padding: 28px 4px;
+    }
+    .steps-center, .content_center {
+        display: flex;
+        vertical-align: middle;
+        align-items: center;
+    }
+    .contact_page .content_center{
+        margin-top: 10px;
+    }
+    .p_t_100{
+        padding-top: 100px
+    }
+    .page_title_2{
+        font-size: 48px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #000000;
+        font-family:  'Baskervville', serif;
+    }
+    
+    .page_title_3{
+        font-size: 36px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #c0ab89;
+        font-family:  'Baskervville', serif;
+    }
+    .desp_content_2{
+        font-size: 20px;
+        font-weight: normal;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: 1.5;
+        letter-spacing: normal;
+        color: #000000;
+        font-family:  'Lato', sans-serif;
+    }
+    .swiper-pagination-fraction{
+        width: 80px;
+        height: 80px;
+        background-color: #f2e8d8;
+        border-radius: 50%;
+        bottom: 10px;
+    }
+    .swiper-pagination-current{
+        font-size: 20px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+        padding: 28px 4px;
+        justify-content: center;
+        display: inline-flex;
+    }
+    .swiper-pagination-total{
+        font-size: 20px;
+        font-weight: 600;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        text-align: center;
+        color: #000000;
+        padding: 28px 4px;
+        justify-content: center;
+        display: inline-flex;
+    }
+    .margin_b_100{
+        margin-bottom: 100px;
+    }
+}
